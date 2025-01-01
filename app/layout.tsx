@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ClerkProvider } from '@clerk/nextjs'
+import Header from "@/components/headers";
+import AuthCheck from "@/components/auth-check";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,14 +23,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
-        {children}
-      </body>
-    </html>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <AuthCheck />
+          <Header />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
