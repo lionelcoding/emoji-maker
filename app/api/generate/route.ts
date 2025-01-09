@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     const prediction = await replicate.predictions.create({
       version: "dee76b5afde21b0f01ed7925f0665b7e879c50ee718c5f78a9d38e04d523cc5e",
       input: {
-        prompt: prompt,
+        prompt: "A TOK OF EMOJI OF " + prompt,
         apply_watermark: false
       }
     });

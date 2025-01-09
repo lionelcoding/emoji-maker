@@ -4,7 +4,7 @@ const nextConfig = {
         REPLICATE_API_TOKEN: process.env.REPLICATE_API_TOKEN || '',
     },
     experimental: {
-        serverActions: true,
+        // Remove serverActions as it's now default in Next.js 14
     },
     webpack: (config) => {
         config.resolve.fallback = {
